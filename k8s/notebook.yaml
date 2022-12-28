@@ -9,6 +9,15 @@ singleuser:
   image:
     name: openbiosim/notebook
     tag: latest
+  extraFiles:
+    jupyter_notebook_config.json:
+      mountPath: /etc/jupyter/jupyter_notebook_config.json
+      data:
+        MappingKernelManager:
+          cull_idle_timeout: 600
+          cull_interval: 120
+          cull_connected: true
+          cull_busy: false
   storage:
     type: none
   memory:
@@ -20,11 +29,21 @@ singleuser:
 prePuller:
   continuous:
     enabled: true
+cull:
+  enabled: true
+  users: true
+  removeNamedServers: true
+  timeout: 600
+  every: 120
 hub:
   config:
     JupyterHub:
       admin_access: false
-    DummyAuthenticator:
-      password: {CHANGE ME}
+    Authenticator:
+      auto_login: true
+    GitHubOAuthenticator:
+      client_id: {CHANGE ME}
+      client_secret: {CHANGE ME}
+      oauth_callback_url: https://try.siremol.org/hub/oauth_callback
     JupyterHub:
-      authenticator_class: dummy
+      authenticator_class: github

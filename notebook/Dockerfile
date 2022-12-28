@@ -5,10 +5,6 @@ LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <
 USER $NB_USER
 WORKDIR $HOME
 
-RUN pip install --upgrade pip && \
-    pip install jupyterhub-tmpauthenticator && \
-    rm -rf $HOME/.cache
-
 RUN conda install -y -c conda-forge mamba
 
 RUN mamba install -y -c michellab -c conda-forge \
@@ -26,9 +22,6 @@ RUN patch /opt/conda/lib/python3.9/site-packages/BioSimSpace/Metadynamics/_metad
 
 # Add in our custom notebook config.
 USER root
-
-# Copy acrross JupyterHub configuration.
-COPY jupyterhub_config.py /etc/jupyter/
 
 # End as the User to make sure that we don't
 # accidentally run the container as root.
