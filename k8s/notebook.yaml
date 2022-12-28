@@ -1,0 +1,23 @@
+singleuser:
+  image:
+    name: openbiosim/notebook
+    tag: latest
+  storage:
+    type: none
+  memory:
+    limit: 2.0G
+    guarantee: 0.5G
+  cpu:
+    limit: 1.0
+    guarantee: 0.2
+prePuller:
+  continuous:
+    enabled: true
+hub:
+  config:
+    JupyterHub:
+      admin_access: false
+    DummyAuthenticator:
+      password: {CHANGE ME}
+    JupyterHub:
+      authenticator_class: dummy
