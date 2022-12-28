@@ -1,3 +1,10 @@
+proxy:
+  https:
+    enabled: true
+    hosts:
+      - try.siremol.org
+    letsencrypt:
+      contactEmail: chryswoods@openbiosim.org
 singleuser:
   image:
     name: openbiosim/notebook
