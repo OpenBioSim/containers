@@ -2,7 +2,7 @@ from condaforge/mambaforge:latest
 
 WORKDIR /root
 
-LABEL maintainer="Christopher Woods <Christopher.Woods@bristol.ac.uk>, Lester Hedges <lester.hedges@gmail.com>"
+LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester.hedges@openbiosim.org>"
 
 RUN useradd -ms /bin/bash openbiosim
 USER openbiosim

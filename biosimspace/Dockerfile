@@ -1,6 +1,6 @@
 from openbiosim/sire:latest
 
-LABEL maintainer="Christopher Woods <Christopher.Woods@bristol.ac.uk>, Lester Hedges <lester.hedges@gmail.com>"
+LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester.hedges@openbiosim.org>"
 
 USER openbiosim
 WORKDIR /home/openbiosim
