@@ -16,3 +16,21 @@ notebook server.
 ```
 $ helm upgrade --cleanup-on-fail --install notebook jupyterhub/jupyterhub --namespace notebook --create-namespace --version=2.0.0 --values notebook.yaml
 ```
+
+## Authentication
+
+We are using github authentication. This is automatic, and should almost 
+be instant after the first login. This is based on setting up an oauth
+app in the OpenBioSim organisation.
+
+## Listing users
+
+Get the HUB ID and then run
+
+```
+$ kubectl --namespace notebook logs hub-{GET HUB ID} | grep "User logged in"
+```
+
+(replacing the HUB ID as needed)
+
+
