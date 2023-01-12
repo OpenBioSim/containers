@@ -2,7 +2,7 @@ from condaforge/mambaforge:latest
 
 WORKDIR /root
 
-LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester.hedges@openbiosim.org>"
+LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester@openbiosim.org>"
 
 RUN useradd -ms /bin/bash openbiosim
 USER openbiosim
@@ -10,10 +10,10 @@ WORKDIR /home/openbiosim
 
 # This is the version of python to build
 # Specify it at build time using '--build-arg python_version=value'
-# e.g. '--build-arg python_version=3.9'
-ARG python_version=3.9
+# e.g. '--build-arg python_version="<3.10"'
+ARG python_version="<3.10"
 
-RUN mamba create -y -n openbiosim python==$python_version && \
+RUN mamba create -y -n openbiosim python"$python_version" && \
     mamba install -y -n openbiosim -c conda-forge \
     git nano boa anaconda-client packaging=21 pip-requirements-parser && \
     mamba clean -y --all && \

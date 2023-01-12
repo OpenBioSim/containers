@@ -1,13 +1,13 @@
 # Start from the base jupyterhub image.
 FROM jupyter/base-notebook:python-3.9
-LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester.hedges@openbiosim.org>"
+LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester@openbiosim.org>"
 
 USER $NB_USER
 WORKDIR $HOME
 
 RUN conda install -y -c conda-forge mamba
 
-RUN mamba install -y -c michellab -c conda-forge \
+RUN mamba install -y -c openbiosim -c conda-forge \
     biosimspace ambertools gromacs plumed patch \
     ipython git nano && \
     mamba clean -y --all && \
