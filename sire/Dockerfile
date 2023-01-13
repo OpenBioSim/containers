@@ -9,7 +9,7 @@ USER openbiosim
 WORKDIR /home/openbiosim
 
 RUN mamba create -y -n openbiosim "python<3.10" && \
-    mamba install -y -n openbiosim -c "openbiosim/label/dev" sire && \
+    mamba install -y -n openbiosim -c openbiosim sire && \
     mamba install -y -n openbiosim ipython jupyterlab git nano && \
     mamba clean -y --all && \
     rm -rf /home/openbiosim/.conda/pkgs/*
