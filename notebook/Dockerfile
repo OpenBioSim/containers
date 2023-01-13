@@ -7,18 +7,23 @@ WORKDIR $HOME
 
 RUN conda install -y -c conda-forge mamba
 
+# For now, we will install sire from openbiosim, and then
+# manually install BioSimSpace from michellab
 RUN mamba install -y -c openbiosim -c conda-forge \
-    biosimspace ambertools gromacs plumed patch \
+    sire ambertools gromacs plumed patch \
     ipython git nano && \
     mamba clean -y --all && \
     rm -rf $HOME/.conda/pkgs/*
+
+ADD install_biosimspace.sh $HOME/install_biosimspace.sh
+RUN bash install_biosimspace.sh && rm install_biosimspace.sh
 
 ADD patches .patches
 
 # Patch the BioSimSpace install so that we restrict GROMACS to use a single
 # MPI thread and four OpenMP thread per MPI thread.
-RUN patch /opt/conda/lib/python3.9/site-packages/BioSimSpace/Process/_gromacs.py .patches/_gromacs.py.patch
-RUN patch /opt/conda/lib/python3.9/site-packages/BioSimSpace/Metadynamics/_metadynamics.py .patches/_metadynamics.py.patch
+#RUN patch /opt/conda/lib/python3.9/site-packages/BioSimSpace/Process/_gromacs.py .patches/_gromacs.py.patch
+#RUN patch /opt/conda/lib/python3.9/site-packages/BioSimSpace/Metadynamics/_metadynamics.py .patches/_metadynamics.py.patch
 
 # Add in our custom notebook config.
 USER root
