@@ -5,9 +5,7 @@ LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <
 USER openbiosim
 WORKDIR /home/openbiosim
 
-RUN mamba install -y -n openbiosim -c openbiosim \
-    biosimspace ambertools gromacs plumed && \
-    mamba clean -y --all && \
-    rm -rf /home/openbiosim/.conda/pkgs/*
+ADD install_biosimspace.py /home/openbiosim/install_biosimspace.py
+RUN python install_biosimspace.py && rm install_biosimspace.py
 
 ENTRYPOINT /bin/bash

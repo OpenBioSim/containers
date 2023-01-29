@@ -29,5 +29,13 @@ $ docker buildx build --platform linux/amd64,linux/arm64 -t openbiosim/sire:late
 
 NOTE - you need the `--push` as the container must be pushed as soon as it is built.
 
+Finally, you need to tag the image using the version number for sire, e.g.
+
+```
+$ docker buildx imagetools create -t openbiosim/sire:2023.1.1 openbiosim/sire:latest
+```
+
+This does the tagging on the server (hub.docker.com).
+
 See [this page](https://docs.docker.com/build/building/multi-platform/)
 for more information on how to create multi-platform docker images.
