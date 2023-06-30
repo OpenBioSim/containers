@@ -1,5 +1,5 @@
 # Start from the base jupyterhub image.
-FROM jupyter/base-notebook:python-3.9
+FROM jupyter/base-notebook:python-3.10
 LABEL maintainer="Christopher Woods <chryswoods@openbiosim.org>, Lester Hedges <lester@openbiosim.org>"
 
 USER $NB_USER
@@ -18,8 +18,8 @@ ENV PLUMED_KERNEL=/opt/plumed2/libplumedKernel.so
 RUN conda install -y -c conda-forge mamba
 
 # Now install BioSimSpace, sire and other useful tools
-RUN mamba install -y -c "openbiosim/label/dev" -c conda-forge \
-    biosimspace sire \
+RUN mamba install -y -c openbiosim -c conda-forge \
+    biosimspace==2023.3.0 sire==2023.3.0 \
     ambertools gromacs plumed patch \
     ipython git nano \
     openblas openmpi-mpicxx && \
@@ -27,6 +27,10 @@ RUN mamba install -y -c "openbiosim/label/dev" -c conda-forge \
     rm -rf $HOME/.conda/pkgs/*
 
 ADD README.txt $HOME/README.txt
+
+# Add extra environment variables as needed
+ENV AMBERHOME=/opt/conda
+ENV PLUMED_ROOT=/opt/plumed2/lib/plumed
 
 # End as the User to make sure that we don't
 # accidentally run the container as root.
