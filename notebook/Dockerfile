@@ -26,7 +26,12 @@ RUN mamba install -y -c openbiosim -c conda-forge \
     mamba clean -y --all && \
     rm -rf $HOME/.conda/pkgs/*
 
+# Now install tutorial dependencies
+RUN mamba install -y -c conda-forge \
+    cinnabar==0.3.0 alchemlyb==2.1.0
+
 ADD README.txt $HOME/README.txt
+ADD TUTORIALS.txt $HOME/TUTORIALS.txt
 
 # Add extra environment variables as needed
 ENV AMBERHOME=/opt/conda

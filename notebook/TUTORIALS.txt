@@ -1,0 +1,5 @@
+To access the BioSimSpace Jupyter notebooks tutorial suite type in the JupyterHub server terminal the command
+
+git clone https://github.com/OpenBioSim/biosimspace_tutorials
+
+And navigate to the folder 'biosimspace_tutorials' on the left hand side of the user interface.
