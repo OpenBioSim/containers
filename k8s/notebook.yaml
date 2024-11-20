@@ -4,11 +4,11 @@ proxy:
     hosts:
       - try.openbiosim.org
     letsencrypt:
-      contactEmail: chryswoods@openbiosim.org
+      contactEmail: XXXXXXXXXXXXXXXXXXX
 singleuser:
   image:
     name: openbiosim/notebook
-    tag: latest
+    tag: 2024.1.0
   extraFiles:
     jupyter_notebook_config.json:
       mountPath: /etc/jupyter/jupyter_notebook_config.json
@@ -21,11 +21,11 @@ singleuser:
   storage:
     type: none
   memory:
-    limit: 2.0G
+    limit: 4.0G
     guarantee: 0.5G
   cpu:
     limit: 1.0
-    guarantee: 0.2
+    guarantee: 0.25
 prePuller:
   continuous:
     enabled: true
@@ -42,8 +42,12 @@ hub:
     Authenticator:
       auto_login: true
     GitHubOAuthenticator:
-      client_id: {CHANGE ME}
-      client_secret: {CHANGE ME}
+      client_id: XXXXXXXXXX
+      client_secret: XXXXXXXXXXXXXX
       oauth_callback_url: https://try.openbiosim.org/hub/oauth_callback
+      allow_all: true
+      block_users:
+        - XXXXXX
     JupyterHub:
       authenticator_class: github
+
