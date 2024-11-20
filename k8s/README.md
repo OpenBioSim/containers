@@ -14,7 +14,7 @@ Command both to install the notebook server, and to upgrade the
 notebook server.
 
 ```
-$ helm upgrade --cleanup-on-fail --install notebook jupyterhub/jupyterhub --namespace notebook --create-namespace --version=2.0.0 --values notebook.yaml
+$ helm upgrade --cleanup-on-fail --install notebook jupyterhub/jupyterhub --namespace notebook --create-namespace --version=3.3.7 --values notebook.yaml
 ```
 
 ## Authentication
@@ -33,4 +33,28 @@ $ kubectl --namespace notebook logs hub-{GET HUB ID} | grep "User logged in"
 
 (replacing the HUB ID as needed)
 
+
+Prune by getting a root prompt on the pod
+
+````
+$ kubectl debug node/aks-mainpool-13388046-vmss000000 -it --image=mcr.microsoft.com/dotnet/runtime-deps:6.0
+````
+
+Then break out
+
+````
+$ chroot /host
+````
+
+Then list nodes using
+
+````
+$ crictl images
+````
+
+Remove unused images using
+
+````
+$ crictl --prune
+````
 
