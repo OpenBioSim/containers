@@ -17,11 +17,14 @@ ENV PLUMED_KERNEL=/opt/plumed2/libplumedKernel.so
 # Update conda
 RUN conda update -c conda-forge conda
 
+# Install mamba.
+RUN conda install -y -c conda-forge mamba
+
 # Now install BioSimSpace and sire
-RUN conda install -y -c openbiosim -c conda-forge biosimspace==2024.2.0
+RUN mamba install -y -c openbiosim -c conda-forge biosimspace==2024.3.0
 
 # Now install the other useful tools
-RUN conda install -y -c conda-forge \
+RUN mamba install -y -c conda-forge \
     "pydot>=1.4.2" \
     "cinnabar>=0.3.0" "alchemlyb>=2.1.0" \
     "gemmi>=0.6.4" \
